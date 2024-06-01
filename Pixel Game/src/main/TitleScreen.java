@@ -8,28 +8,41 @@ import java.awt.event.ActionListener;
 public class TitleScreen extends JPanel {
     JButton startButton;
 
-    public TitleScreen() {
-        setLayout(new BorderLayout());
-        setBackground(Color.BLACK);
+    public TitleScreen(GamePanel gp) {
+        this.setLayout(new GridLayout(6,1));
+        this.setPreferredSize(new Dimension(gp.screenWidth, gp.screenHeight));
+        this.setBackground(new Color(43, 147, 72));
 
-        JLabel titleLabel = new JLabel("pixel Plunder", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("Pixel Plunder", SwingConstants.CENTER);
         titleLabel.setForeground(Color.WHITE);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        add(titleLabel, BorderLayout.CENTER);
+        titleLabel.setFont(new Font("Monserrat", Font.BOLD, 56));
 
-        startButton = new JButton("Start");
-        startButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        startButton = new JButton("Start Game");
+        startButton.setFont(new Font("Monserrat", Font.PLAIN, 26));
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main.getInstance().startGame();
             }
         });
-        JPanel buttonPanel = new JPanel(new FlowLayout());
+        startButton.setFocusable(false);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(Color.WHITE);
         buttonPanel.setOpaque(false);
         buttonPanel.add(startButton);
-        add(buttonPanel, BorderLayout.SOUTH);
+
+        // for aligning the components
+        this.add(new JLabel(""));
+        this.add(titleLabel);
+        this.add(buttonPanel);
+        this.add(new JLabel(""));
+        this.add(new JLabel(""));
+        this.add(new JLabel(""));
     }
+
+
+
 
     public JButton getStartButton() {
         return startButton;

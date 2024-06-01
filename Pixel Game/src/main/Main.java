@@ -9,7 +9,7 @@ public class Main extends JFrame {
     private GamePanel gamePanel;
 
     private Main() {
-        setTitle("Pixel plunder");
+        setTitle("Pixel Plunder");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         gamePanel = new GamePanel();
