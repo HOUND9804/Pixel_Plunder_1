@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     public CollisionChecker cChecker =new CollisionChecker(this);
     public TitleScreen titleScreen = new TitleScreen(this);
-    public GameOverScreen gos=new GameOverScreen();
+    public GameOverScreen gos=new GameOverScreen(this);
     public AssetSetter aSetter=new AssetSetter(this);
     public Player player = new Player(this, keyH);
 
@@ -60,7 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
         titleScreen.startButton = titleScreen.getStartButton();
         titleScreen.startButton.addActionListener(e -> startGame());
         add(gos,BorderLayout.CENTER);
-        add(titleScreen, BorderLayout.CENTER);
+        add(titleScreen/*, BorderLayout.CENTER*/);
         gos.setVisible(false);
     }
     public void setUpGame(){
