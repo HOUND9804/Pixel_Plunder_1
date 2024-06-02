@@ -19,12 +19,7 @@ public class TitleScreen extends JPanel {
 
         startButton = new JButton("Start Game");
         startButton.setFont(new Font("Monserrat", Font.PLAIN, 26));
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.getInstance().startGame();
-            }
-        });
+        startButton.addActionListener((e) -> {Main.getInstance().startGame();});
         startButton.setFocusable(false);
 
         JPanel buttonPanel = new JPanel();
