@@ -40,7 +40,6 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     public CollisionChecker cChecker =new CollisionChecker(this);
     public TitleScreen titleScreen = new TitleScreen(this);
-    public GameOverScreen gos=new GameOverScreen(this);
     public AssetSetter aSetter=new AssetSetter(this);
     public Player player = new Player(this, keyH);
 
@@ -49,6 +48,7 @@ public class GamePanel extends JPanel implements Runnable {
     public ArrayList<SuperProjectile>projectiles=new ArrayList<>();
     //obj
     public SuperObject obj[]=new SuperObject[10];
+    public JLabel gameOverLabel;
 
 
     public GamePanel() {
@@ -59,9 +59,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
         titleScreen.startButton = titleScreen.getStartButton();
         titleScreen.startButton.addActionListener(e -> startGame());
-        add(gos,BorderLayout.CENTER);
-        add(titleScreen/*, BorderLayout.CENTER*/);
-        gos.setVisible(false);
+        add(titleScreen, BorderLayout.CENTER);
+        gameOverLabel = new JLabel("Game Over");
+        gameOverLabel.setVisible(false);
+        add(gameOverLabel);
     }
     public void setUpGame(){
         aSetter.setObject();
@@ -117,10 +118,8 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
         else{
-            this.removeAll();
-            gos.setVisible(true);
-            this.revalidate();
-            this.repaint();
+            gameOverLabel.setVisible(true);
+            repaint();
         }
     }
 
@@ -131,9 +130,8 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         if (titleScreen.isVisible()) {
-            // Draw title screen
             titleScreen.setVisible(true);
-            return; // Don't draw game elements if title screen is visible
+            return;
         } else {
             titleScreen.setVisible(false);
         }
@@ -150,6 +148,16 @@ public class GamePanel extends JPanel implements Runnable {
         }
         player.draw(g2);
 
+        if (gameOverLabel.isVisible()) {
+            // Draw game over text
+            Font font = new Font("Arial", Font.BOLD, 40);
+            g2.setFont(font);
+            g2.setColor(Color.WHITE);
+            FontMetrics metrics = g2.getFontMetrics(font);
+            int x = (screenWidth - metrics.stringWidth("Game Over")) / 2;
+            int y = screenHeight / 2;
+            g2.drawString("Game Over", x, y);
+        }
         g2.dispose();
     }
 }
