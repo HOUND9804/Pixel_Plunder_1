@@ -11,7 +11,6 @@ public class Enemy {
     public String name;
     public boolean collision =false;
     public int worldX,worldY;
-    public int projectileSpeed;
     public long lastShotTime;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public int solidDefaultAreaX= 0;

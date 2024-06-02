@@ -12,5 +12,9 @@ public class EnemySetter {
        gp.enemies[0].worldX=8* gp.tileSize;
        gp.enemies[0].worldY=37* gp.tileSize;
 
+       /*gp.enemies[1]=new Lava_hound();
+       gp.enemies[1].worldX=37* gp.tileSize;
+       gp.enemies[1].worldY=10* gp.tileSize;*/
+
    }
 }
