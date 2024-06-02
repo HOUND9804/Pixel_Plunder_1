@@ -39,8 +39,7 @@ public class Enemy {
         double dx = gp.player.worldX - worldX;
         double dy = gp.player.worldY - worldY;
         double angle = Math.atan2(dy, dx);
-        //Projectile projectile = new Projectile(x, y, angle, projectileSpeed, projectileRadius, projectileColor);
-        //Game.projectiles.add(projectile);
+
     }
 
 }
