@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
     //obj
     public SuperObject obj[]=new SuperObject[10];
     public JLabel gameOverLabel;
+    public JLabel congoPanel;
 
 
     public GamePanel() {
@@ -63,6 +64,9 @@ public class GamePanel extends JPanel implements Runnable {
         gameOverLabel = new JLabel("Game Over");
         gameOverLabel.setVisible(false);
         add(gameOverLabel);
+        congoPanel=new JLabel("You found the treasure !");
+        congoPanel.setVisible(false);
+        add(congoPanel);
     }
     public void setUpGame(){
         aSetter.setObject();
@@ -120,6 +124,10 @@ public class GamePanel extends JPanel implements Runnable {
                     i--;
                 }
             }
+            if(this.obj[6] == this.obj[9]){
+                congoPanel.setVisible(true);
+                repaint();
+            }
         }
         else{
             gameOverLabel.setVisible(true);
@@ -152,8 +160,18 @@ public class GamePanel extends JPanel implements Runnable {
             projectile.draw(g2, this);
         }
         player.draw(g2);
+        if(congoPanel.isVisible()){
+            Font font = new Font("Arial", Font.BOLD, 40);
+            g2.setFont(font);
+            g2.setColor(Color.WHITE);
+            FontMetrics metrics = g2.getFontMetrics(font);
+            int x = (screenWidth - metrics.stringWidth("You found the treasure !")) / 2;
+            int y = screenHeight / 2;
+            g2.drawString("You found the treasure !", x, y);
+        }
 
-        if (gameOverLabel.isVisible() || this.obj[6] == this.obj[9]) {
+        if (gameOverLabel.isVisible() ) {
+            congoPanel.setVisible(false);
             // Draw game over text
             Font font = new Font("Arial", Font.BOLD, 40);
             g2.setFont(font);
