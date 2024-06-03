@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public EnemySetter e1=new EnemySetter(this);
     public Enemy enemies[]=new Enemy[3];
-    public ArrayList<SuperProjectile>projectiles=new ArrayList<>();
+    public ArrayList<SuperProjectile>projectiles=new ArrayList<>(200);
     //obj
     public SuperObject obj[]=new SuperObject[10];
     public JLabel gameOverLabel;
