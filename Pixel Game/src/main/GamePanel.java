@@ -106,6 +106,10 @@ public class GamePanel extends JPanel implements Runnable {
                     enemies[0].throwProjectile(this);
                 }
 
+                /*if (enemies[1].isPlayerInRange(this)) {
+                    enemies[1].throwProjectile(this);
+                }*/
+
                 lastProjectileTime = currentTime;
             }
             for (int i = 0; i < projectiles.size(); i++) {
@@ -143,12 +147,13 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
         enemies[0].draw(g2, this);
+        //enemies[1].draw(g2, this);
         for (SuperProjectile projectile : projectiles) {
             projectile.draw(g2, this);
         }
         player.draw(g2);
 
-        if (gameOverLabel.isVisible()) {
+        if (gameOverLabel.isVisible() || this.obj[6] == this.obj[9]) {
             // Draw game over text
             Font font = new Font("Arial", Font.BOLD, 40);
             g2.setFont(font);
@@ -161,4 +166,3 @@ public class GamePanel extends JPanel implements Runnable {
         g2.dispose();
     }
 }
-
